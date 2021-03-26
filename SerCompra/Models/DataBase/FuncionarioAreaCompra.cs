@@ -11,16 +11,16 @@ namespace SerCompra.Models.DataBase
         {
             Compras = new HashSet<Compra>();
             Solicitudproveedors = new HashSet<Solicitudproveedor>();
-            Usuarios = new HashSet<Usuario>();
         }
 
         public int IdFuncionarioAreaCompras { get; set; }
         public string NombreTrabajador { get; set; }
         public string Cargo { get; set; }
         public string Notificaciones { get; set; }
+        public int UsuarioIdUsuario { get; set; }
 
+        public virtual Usuario UsuarioIdUsuarioNavigation { get; set; }
         public virtual ICollection<Compra> Compras { get; set; }
         public virtual ICollection<Solicitudproveedor> Solicitudproveedors { get; set; }
-        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

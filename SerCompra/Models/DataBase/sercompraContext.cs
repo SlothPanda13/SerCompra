@@ -42,15 +42,21 @@ namespace SerCompra.Models.DataBase
         {
             modelBuilder.Entity<Administrador>(entity =>
             {
-                entity.HasKey(e => e.IdAdministrador)
+                entity.HasKey(e => new { e.IdAdministrador, e.UsuarioIdUsuario })
                     .HasName("PRIMARY");
 
                 entity.ToTable("administrador");
 
+                entity.HasIndex(e => e.UsuarioIdUsuario, "fk_Administrador_Usuario1_idx");
+
                 entity.HasIndex(e => e.IdAdministrador, "idAdministrador_UNIQUE")
                     .IsUnique();
 
-                entity.Property(e => e.IdAdministrador).HasColumnName("idAdministrador");
+                entity.Property(e => e.IdAdministrador)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("idAdministrador");
+
+                entity.Property(e => e.UsuarioIdUsuario).HasColumnName("Usuario_idUsuario");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -59,6 +65,12 @@ namespace SerCompra.Models.DataBase
                 entity.Property(e => e.Notificaciones)
                     .IsRequired()
                     .HasColumnType("mediumtext");
+
+                entity.HasOne(d => d.UsuarioIdUsuarioNavigation)
+                    .WithMany(p => p.Administradors)
+                    .HasForeignKey(d => d.UsuarioIdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_Administrador_Usuario1");
             });
 
             modelBuilder.Entity<Bienservicio>(entity =>
@@ -154,6 +166,7 @@ namespace SerCompra.Models.DataBase
 
                 entity.HasOne(d => d.FuncionarioAreaComprasIdFuncionarioAreaComprasNavigation)
                     .WithMany(p => p.Compras)
+                    .HasPrincipalKey(p => p.IdFuncionarioAreaCompras)
                     .HasForeignKey(d => d.FuncionarioAreaComprasIdFuncionarioAreaCompras)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Compra_Funcionario_Area_Compras1");
@@ -260,15 +273,21 @@ namespace SerCompra.Models.DataBase
 
             modelBuilder.Entity<FuncionarioAreaCompra>(entity =>
             {
-                entity.HasKey(e => e.IdFuncionarioAreaCompras)
+                entity.HasKey(e => new { e.IdFuncionarioAreaCompras, e.UsuarioIdUsuario })
                     .HasName("PRIMARY");
 
                 entity.ToTable("funcionario_area_compras");
 
+                entity.HasIndex(e => e.UsuarioIdUsuario, "fk_Funcionario_Area_Compras_Usuario1_idx");
+
                 entity.HasIndex(e => e.IdFuncionarioAreaCompras, "idFuncionario_Area_Compras_UNIQUE")
                     .IsUnique();
 
-                entity.Property(e => e.IdFuncionarioAreaCompras).HasColumnName("idFuncionario_Area_Compras");
+                entity.Property(e => e.IdFuncionarioAreaCompras)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("idFuncionario_Area_Compras");
+
+                entity.Property(e => e.UsuarioIdUsuario).HasColumnName("Usuario_idUsuario");
 
                 entity.Property(e => e.Cargo)
                     .IsRequired()
@@ -282,16 +301,24 @@ namespace SerCompra.Models.DataBase
                 entity.Property(e => e.Notificaciones)
                     .IsRequired()
                     .HasColumnType("mediumtext");
+
+                entity.HasOne(d => d.UsuarioIdUsuarioNavigation)
+                    .WithMany(p => p.FuncionarioAreaCompras)
+                    .HasForeignKey(d => d.UsuarioIdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_Funcionario_Area_Compras_Usuario1");
             });
 
             modelBuilder.Entity<Proveedor>(entity =>
             {
-                entity.HasKey(e => new { e.IdProveedor, e.DocumentacionIdDocumentacion })
+                entity.HasKey(e => new { e.IdProveedor, e.DocumentacionIdDocumentacion, e.UsuarioIdUsuario })
                     .HasName("PRIMARY");
 
                 entity.ToTable("proveedor");
 
                 entity.HasIndex(e => e.DocumentacionIdDocumentacion, "fk_Proveedor_Documentacion1_idx");
+
+                entity.HasIndex(e => e.UsuarioIdUsuario, "fk_Proveedor_Usuario1_idx");
 
                 entity.HasIndex(e => e.IdProveedor, "idProveedor_UNIQUE")
                     .IsUnique();
@@ -302,6 +329,8 @@ namespace SerCompra.Models.DataBase
                     .HasComment("Numero para identificar al proveedor");
 
                 entity.Property(e => e.DocumentacionIdDocumentacion).HasColumnName("Documentacion_idDocumentacion");
+
+                entity.Property(e => e.UsuarioIdUsuario).HasColumnName("Usuario_idUsuario");
 
                 entity.Property(e => e.CiudadMunicipio)
                     .IsRequired()
@@ -338,6 +367,12 @@ namespace SerCompra.Models.DataBase
                     .HasForeignKey(d => d.DocumentacionIdDocumentacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Proveedor_Documentacion1");
+
+                entity.HasOne(d => d.UsuarioIdUsuarioNavigation)
+                    .WithMany(p => p.Proveedors)
+                    .HasForeignKey(d => d.UsuarioIdUsuario)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_Proveedor_Usuario1");
             });
 
             modelBuilder.Entity<Solicitudproveedor>(entity =>
@@ -372,44 +407,23 @@ namespace SerCompra.Models.DataBase
 
                 entity.HasOne(d => d.FuncionarioAreaComprasIdFuncionarioAreaComprasNavigation)
                     .WithMany(p => p.Solicitudproveedors)
+                    .HasPrincipalKey(p => p.IdFuncionarioAreaCompras)
                     .HasForeignKey(d => d.FuncionarioAreaComprasIdFuncionarioAreaCompras)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_SolicitudProveedor_Funcionario_Area_Compras1");
-
-                entity.HasOne(d => d.Proveedor)
-                    .WithMany(p => p.Solicitudproveedors)
-                    .HasForeignKey(d => new { d.ProveedorIdProveedor, d.ProveedorDocumentacionIdDocumentacion })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_SolicitudProveedor_Proveedor1");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.HasKey(e => new { e.IdUsuario, e.ProveedorIdProveedor, e.ProveedorDocumentacionIdDocumentacion, e.FuncionarioAreaComprasIdFuncionarioAreaCompras, e.AdministradorIdAdministrador })
+                entity.HasKey(e => e.IdUsuario)
                     .HasName("PRIMARY");
 
                 entity.ToTable("usuario");
 
-                entity.HasIndex(e => e.AdministradorIdAdministrador, "fk_Usuario_Administrador1_idx");
-
-                entity.HasIndex(e => e.FuncionarioAreaComprasIdFuncionarioAreaCompras, "fk_Usuario_Funcionario_Area_Compras1_idx");
-
-                entity.HasIndex(e => new { e.ProveedorIdProveedor, e.ProveedorDocumentacionIdDocumentacion }, "fk_Usuario_Proveedor1_idx");
-
                 entity.HasIndex(e => e.IdUsuario, "idUsuario_UNIQUE")
                     .IsUnique();
 
-                entity.Property(e => e.IdUsuario)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("idUsuario");
-
-                entity.Property(e => e.ProveedorIdProveedor).HasColumnName("Proveedor_idProveedor");
-
-                entity.Property(e => e.ProveedorDocumentacionIdDocumentacion).HasColumnName("Proveedor_Documentacion_idDocumentacion");
-
-                entity.Property(e => e.FuncionarioAreaComprasIdFuncionarioAreaCompras).HasColumnName("Funcionario_Area_Compras_idFuncionario_Area_Compras");
-
-                entity.Property(e => e.AdministradorIdAdministrador).HasColumnName("Administrador_idAdministrador");
+                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
                 entity.Property(e => e.Contraseña)
                     .IsRequired()
@@ -422,24 +436,6 @@ namespace SerCompra.Models.DataBase
                 entity.Property(e => e.Rol)
                     .IsRequired()
                     .HasMaxLength(15);
-
-                entity.HasOne(d => d.AdministradorIdAdministradorNavigation)
-                    .WithMany(p => p.Usuarios)
-                    .HasForeignKey(d => d.AdministradorIdAdministrador)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Usuario_Administrador1");
-
-                entity.HasOne(d => d.FuncionarioAreaComprasIdFuncionarioAreaComprasNavigation)
-                    .WithMany(p => p.Usuarios)
-                    .HasForeignKey(d => d.FuncionarioAreaComprasIdFuncionarioAreaCompras)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Usuario_Funcionario_Area_Compras1");
-
-                entity.HasOne(d => d.Proveedor)
-                    .WithMany(p => p.Usuarios)
-                    .HasForeignKey(d => new { d.ProveedorIdProveedor, d.ProveedorDocumentacionIdDocumentacion })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Usuario_Proveedor1");
             });
 
             OnModelCreatingPartial(modelBuilder);

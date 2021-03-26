@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta charset="UTF-8"/>
-    <title>@ViewData["Title"] - SerCompra</title>
+    <title>SerCompra | @ViewData["Title"]</title>
     <meta name="author" content="Grupo SerCompra">
     <meta name="description" content="Sistema de información para gestionar el proceso de registro y compra a proveedores">
     <meta name="keywords" content="SerCompra, proveedores, contratistas">
@@ -13,48 +13,51 @@
     <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"-->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/Styledisenohome.css" />
-    <link rel="shortcut icon" href="~/Imagenes/iconlogo3.png">
+    <link rel="shortcut icon" href="~/Imagenes/Logo/Logo0.svg">
     <script src="https://kit.fontawesome.com/bfa271f5f8.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
     <!--navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-pink">
-        <a href="#v-pills-home" class="navbar-brand">
-            <img src="~/Imagenes/logo1.png" style="width:50%;"/>
-        </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-pink ">
+        <div class="container">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <img src="~/Imagenes/Logo/Logo3.svg" alt="Logo3" width="200"/>
+            </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" style="justify-content: right" id="main-menu">
-            <div>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-area="" asp-controller="" asp-action="">Iniciar sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalcontacto">
-                            <i class="far fa-envelope"></i> Contáctanos
-                        </button>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="https://www.comfacundi.com.co/"><i class="fas fa-power-off"></i> Salir</a>
-                    </li>
+            <div class="collapse navbar-collapse" id="main-menu">
 
-                </ul>
+                    <ul class="navbar-nav ml-auto pl-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Sobre SerCompra</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="https://www.comfacundi.com.co/">COMFACUNDI</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-toggle="modal" data-target="#Modalcontacto">
+                                <i class="far fa-envelope"></i> Contáctenos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Access" asp-action="Login">
+                                <i class="far fa-user"></i> Iniciar sesión
+                            </a>
+                        </li>
+                    </ul>
+
+
             </div>
-
         </div>
-
     </nav>
     <!-- modal de contactos -->
     <div class="modal fade" id="Modalcontacto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,9 +88,9 @@
                                     <p>contacto@sercompra.com.co</p>
                                 </div>
                                 <div class="google-maps">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63627.65940912732!2d-74.09267068504955!3d4.642406700000024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a39b65e4b45%3A0xb245795852177049!2sServicio%20Nacional%20de%20Aprendizaje%20SENA!5e0!3m2!1ses-419!2sco!4v1600893550998!5m2!1ses-419!2sco"
-                                        width="430" height="250" style="border:0;" allowfullscreen="" aria-hidden="false"
-                                        tabindex="0"></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63627.65940912732!2d-74.09267068504955!3d4.642406700000024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a39b65e4b45%3A0xb245795852177049!2sServicio%20Nacional%20de%20Aprendizaje%20SENA!5e0!3m2!1ses-419!2sco!4v1600893550998!5m2!1ses-419!2sco"
+                                            width="430" height="250" style="border:0;" allowfullscreen="" aria-hidden="false"
+                                            tabindex="0"></iframe>
                                 </div>
                                 <form>
                                     <div class="form-row">
@@ -124,7 +127,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
             </div>
         </div>
@@ -140,25 +143,29 @@
 <footer class="footer">
     <div class="container bottom_border">
         <div class="row">
-            <div class=" col-sm-4 col-md col-sm-4  col-12 col">
-                <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+            <div class=" col-sm-4 col-md col-sm-4  col-3 col">
+                <h5 class="headin5_amrc col_white_amrc pt2">Encuentrenos</h5>
                 <!--headin5_amrc-->
-                <p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                 <p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
                 <p><i class="fa fa-phone"></i>  +91-9999878398  </p>
                 <p><i class="fa fa fa-envelope"></i> info@example.com  </p>
-
-
             </div>
 
-
-            <div class=" col-sm-4 col-md  col-6 col">
+            <div class=" col-sm-4 col-md  col-3 col">
                 <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
                 <!--headin5_amrc-->
                 <ul class="footer_ul_amrc">
                     <li><a href="http://webenlance.com">Image Rectoucing</a></li>
                     <li><a href="http://webenlance.com">Clipping Path</a></li>
                     <li><a href="http://webenlance.com">Hollow Man Montage</a></li>
+                </ul>
+                <!--footer_ul_amrc ends here-->
+            </div>
+
+            <div class=" col-sm-4 col-md  col-3 col">
+                <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+                <!--headin5_amrc-->
+                <ul class="footer_ul_amrc">
                     <li><a href="http://webenlance.com">Ebay & Amazon</a></li>
                     <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
                     <li><a href="http://webenlance.com">Image Cropping</a></li>
@@ -166,32 +173,15 @@
                 <!--footer_ul_amrc ends here-->
             </div>
 
-
-            <div class=" col-sm-4 col-md  col-6 col">
+            <div class=" col-sm-4 col-md  col-3 col">
                 <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
                 <!--headin5_amrc-->
                 <ul class="footer_ul_amrc">
                     <li><a href="http://webenlance.com">Remove Background</a></li>
                     <li><a href="http://webenlance.com">Shadows & Mirror Reflection</a></li>
                     <li><a href="http://webenlance.com">Logo Design</a></li>
-                    <li><a href="http://webenlance.com">Vectorization</a></li>
-                    <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
-                    <li><a href="http://webenlance.com">Image Cropping</a></li>
                 </ul>
                 <!--footer_ul_amrc ends here-->
-            </div>
-
-
-            <div class=" col-sm-4 col-md  col-12 col">
-                <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
-                <!--headin5_amrc ends here-->
-
-                <ul class="footer_ul2_amrc">
-                    <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-                    <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-                    <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-                </ul>
-                <!--footer_ul2_amrc ends here-->
             </div>
         </div>
     </div>
@@ -199,15 +189,13 @@
 
     <div class="container">
         <ul class="foote_bottom_ul_amrc">
-            <li><a href="http://webenlance.com">Home</a></li>
-            <li><a href="http://webenlance.com">About</a></li>
-            <li><a href="http://webenlance.com">Services</a></li>
-            <li><a href="http://webenlance.com">Pricing</a></li>
-            <li><a href="http://webenlance.com">Blog</a></li>
-            <li><a href="http://webenlance.com">Contact</a></li>
+            <li><a href="http://webenlance.com">Inicio</a></li>
+            <li><a href="http://webenlance.com">Sobre SerCompra</a></li>
+            <li><a href="http://webenlance.com">Servicios</a></li>
+            <li><a href="http://webenlance.com">Contactenos</a></li>
         </ul>
         <!--foote_bottom_ul_amrc ends here-->
-        <p class="text-center">&copy; Copyright @DateTime.Now.Year - SerCompra | <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> </p>
+        <p class="text-center">&copy; Derechos de autor @DateTime.Now.Year - SerCompra | <a asp-area="" asp-controller="Home" asp-action="Privacy">Pólitica de privacidad</a> </p>
 
         <ul class="social_footer_ul">
             <li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>

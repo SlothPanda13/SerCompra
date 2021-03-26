@@ -14,6 +14,5 @@ namespace SerCompra.Models.DataBase
         public int ProveedorDocumentacionIdDocumentacion { get; set; }
 
         public virtual FuncionarioAreaCompra FuncionarioAreaComprasIdFuncionarioAreaComprasNavigation { get; set; }
-        public virtual Proveedor Proveedor { get; set; }
     }
 }

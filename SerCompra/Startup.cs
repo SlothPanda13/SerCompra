@@ -25,6 +25,7 @@ namespace SerCompra
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
             services.AddControllersWithViews().AddRazorRuntimeCompilation(); ;
             services.AddDbContext<sercompraContext>(options =>
              options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
@@ -47,7 +48,7 @@ namespace SerCompra
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
