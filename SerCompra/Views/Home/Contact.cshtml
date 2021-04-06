@@ -1,0 +1,62 @@
+﻿
+
+@{
+    ViewBag.Title = "Contacto";
+
+}
+
+<section class="w3l-contact-breadcrum">
+  <div class="breadcrum-bg">
+    <div class="container py-5">
+      <h2>Contactenos</h2>
+      <p><a asp-controller="Home" asp-action="Index">Inicio</a> &nbsp; / &nbsp; Contacto</p>
+    </div>
+  </div>
+</section>
+<section class="w3l-contact-2 py-5" id="contact">
+    <div class="contact-infubd section-gap py-lg-5 py-md-4">
+        <div class="container">
+            <div class="contact-grids d-grid">
+                <div class="contact-left">
+                    <h4>Dejenos un mensaje</h4>
+                    <h6>For more info or inquiry about our products project, and pricing please feel free to get in
+                        touch with
+                        us.</h6>
+                    <div class="hours">
+                        <h6 class="info mt-3">Correo electronico:</h6>
+                        <p> <a href="mailto:info@example.com">
+                            info@example.com</a></p>
+                        <h6 class="info mt-3">Dirección:</h6>
+                        <p> Corporate Office, #32841 block, #221DRS Lorem Street, UK.</p>
+                        <h6 class="info mt-3">Telefono:</h6>
+                        <p class="margin-top"><a href="tel:+(121-345-6789">+121-345-6789</a></p>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form action="https://sendmail.w3layouts.com/submitForm" method="post" class="signin-form">
+                        <div class="input-grids">
+                            <input type="text" name="w3lName" id="w3lName" placeholder="Nombre*" class="contact-input">
+                            <input type="email" name="w3lSender" id="w3lSender" placeholder="Correo electronico*" class="contact-input" required="">
+                            <input type="text" name="w3lSubect" id="w3lSubect" placeholder="Asunto*" class="contact-input">
+                        </div>
+                        <div class="form-input">
+                            <textarea name="w3lMessage" id="w3lMessage" placeholder="Escriba aquí su mensaje*" required=""></textarea>
+                        </div>
+                        <button class="btn btn-secondary btn-theme2 submit">Enviar</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+</div></section>
+<!-- contact -->
+<section class="w3l-contacts-12" id="">
+    <div class="contact-top">
+
+        <!-- map -->
+        <div class="map map mt-md-0 mt-5">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63627.65940912732!2d-74.09267068504955!3d4.642406700000024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a39b65e4b45%3A0xb245795852177049!2sServicio%20Nacional%20de%20Aprendizaje%20SENA!5e0!3m2!1ses-419!2sco!4v1600893550998!5m2!1ses-419!2sco" frameborder="0.5" style="border:0" allowfullscreen=""></iframe>
+        </div>
+        <!-- //map -->
+    </div>
+</section>

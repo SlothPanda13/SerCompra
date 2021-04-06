@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SerCompra.Models.DataBase;
 using SerCompra.Models;
 using Microsoft.AspNetCore.Http;
+using Org.BouncyCastle.Asn1.Cmp;
 
 namespace SerCompra.Controllers
 {
@@ -51,7 +52,7 @@ namespace SerCompra.Controllers
                         
                     }
                     else {
-                        return Content("Usuario y/o contraseña invalidos");
+                        return Content ("Usuario y/o contraseña invalidos");
                     }
                 }
             }
