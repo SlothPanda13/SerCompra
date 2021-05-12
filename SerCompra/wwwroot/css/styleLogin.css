@@ -271,8 +271,8 @@ h1 {
 }
 
 .vertical-tab .section-w3ls label {
-    background: #fff;
-    border-right: 1px solid #dcdcdc;
+    background: #ffff;
+    border-right: 1px solid #ffff;
     cursor: pointer;
     display: block;
     font-size: 17px;
@@ -280,7 +280,7 @@ h1 {
     position: relative;
     width: 189px;
     z-index: 100;
-    color: #001647;
+    color: #F5432B;
     text-align: center;
 }
 
@@ -305,8 +305,8 @@ h1 {
 } */
 
 .vertical-tab input[name="sections"]:checked + label {
-    background: #001647;
-    border-right: 1px solid #000B4B;
+    background: #F5432B;
+    border-right: 1px solid #F5432B;
     color: #fff;
 }
 
@@ -329,7 +329,7 @@ label.icon-left-w3pvt span {
 }
 
 .legend {
-    color: #001647;
+    color: #F5432B;
     font-size: 24px;
     text-align: center;
     margin-bottom: 1.2em;
@@ -351,7 +351,7 @@ p.para-style-2 {
 }
 
 p.para-style-2 a {
-    color: #001647;
+    color: #F5432B;
 }
 
 .input {
@@ -369,12 +369,12 @@ p.para-style-2 a {
 
 .input span {
     font-size: 15px;
-    color: #464646;
+    color: #F5432B;
     margin-right: 10px;
 }
 
 .input input {
-    color: #001647;
+    color: #000B4B;
     font-size: 14px;
     letter-spacing: 1px;
     box-sizing: border-box;
@@ -418,7 +418,7 @@ p.para-style-2 a {
 }
 
 a.bottom-text-w3ls {
-    color: #757474;
+    color: #F5432B;
     font-size: 14px;
     display: inherit;
     letter-spacing: 1px;
@@ -427,7 +427,7 @@ a.bottom-text-w3ls {
 }
 
 .btn-primary {
-    background-color: #001647;
+    background-color: #F03E02;
     color: #FFFFFF;
     border-color: #FFFFFF;
 }
@@ -445,12 +445,12 @@ a.bottom-text-w3ls {
 }
 
 a:hover {
-    color: #EC0086;
+    color: #F77F0C;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #EC0086;
+    background-color: #F5432B;
 }
 
 /* //form style */

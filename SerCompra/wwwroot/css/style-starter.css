@@ -11362,7 +11362,7 @@ button.owl-next {
   background: #f2f8ff; }
 
 .w3l-open-block-services h4.mission {
-  color: #0D001A;
+  color: #001647;
   font-size: 20px;
   line-height: 28px;
   font-weight: 600;
@@ -11375,7 +11375,7 @@ button.owl-next {
   color: var(--opposite-color); }
 
 .w3l-open-block-services .open-description p {
-  color: #555;
+  color: #001647;
   font-size: 15px;
   line-height: 26px;
   margin-top: 10px;
@@ -11401,8 +11401,8 @@ button.owl-next {
   border-radius: 4px; }
 
 .w3l-open-block-services .card:hover {
-  background: var(--opposite-color);
-  border-bottom: 3px solid var(--opposite-color);
+  background: #F5432B;
+  border-bottom: 3px solid #F5432B;
   transition: .3s;
   -webkit-transition: .3s;
   -moz-transition: .3s;
@@ -11428,7 +11428,7 @@ button.owl-next {
     line-height: 40px; } }
 
 .w3l-index6 {
-  background: linear-gradient(100deg, #2e5deb 10%, #5360fd 50%, #ec0086 100%); }
+  background: linear-gradient(100deg, #EC0086 10%, #F77F0C 50%, #F5432B 100%); }
 
 .w3l-services2 .features-with-17_sur h6 {
   font-size: 20px;
@@ -11474,7 +11474,7 @@ button.owl-next {
   content: "";
   background: rgba(7, 10, 12, 0.45);
   background: rgba(23, 68, 158, 0.6);
-  background: linear-gradient(45deg, #17449e, #000000cf);
+  background: linear-gradient(45deg, #F77F0C, #000000cf);
   position: absolute;
   top: 0;
   min-height: 100%;
@@ -11484,7 +11484,7 @@ button.owl-next {
 
 .w3l-services2 .features-with-17-right-tp_sur {
   padding: 40px;
-  background: rgba(46, 93, 235, 0.33);
+  background: #F5432B;
   transition: 0.3s ease;
   -moz-transition: 0.3s ease;
   -ms-transition: 0.3s ease;
