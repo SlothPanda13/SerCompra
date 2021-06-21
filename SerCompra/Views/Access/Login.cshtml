@@ -8,210 +8,204 @@
 <section class="w3l-contact-breadcrum">
     <div class="breadcrum-bg">
         <br>
-        <!--<div class="container py-5">
-            <h2>Acceso</h2>
-            <p><a asp-controller="Home" asp-action="Index">Inicio</a> &nbsp; / &nbsp; Iniciar sesión</p>
-        </div>-->
     </div>
 </section>
-<div class="main-bg">
-    <br>
-    <div class="sub-main-w3" style="align-content: center">
-        <!-- vertical tabs -->
-        <div class="vertical-tab">
-            <div id="section1" class="section-w3ls">
-                <input type="radio" name="sections" id="option1" checked>
-                <label for="option1" class="icon-left-w3pvt"><span class="far fa-user" aria-hidden="true"></span>Iniciar sesión</label>
-                <article>
-                    <form asp-controller="Access" asp-action="Entrar" method="post">
-                        <img src="~/Imagenes/Logo/Logo0.svg" class="rounded mx-auto d-block" alt="logo0" width="25%">
-                        <h3 class="legend">Inicia sesión</h3>
-                        <div class="input">
-                            <span class="far fa-envelope" aria-hidden="true"></span>
-                            <input type="email" placeholder="Correo electronico" name="email" required/>
-                        </div>
-                        <div class="input">
-                            <span class="fa fa-key" aria-hidden="true"></span>
-                            <input type="password" placeholder="Contraseña" name="password" required/>
-                        </div>
-
-                        <button type="submit" class="btn submit">Entrar</button>
-                    </form>
-                </article>
-            </div>
-            <div id="section3" class="section-w3ls">
-                <input type="radio" name="sections" id="option3">
-                <label for="option3" class="icon-left-w3pvt"><span class="fa fa-lock" aria-hidden="true"></span>¿Olvido su contraseña?</label>
-                <article>
-                    <form method="post">
-                        <img src="~/Imagenes/Logo/Logo0.svg" class="rounded mx-auto d-block" alt="logo0" width="25%">
-                        <h3 class="legend last">Recuperar contraseña</h3>
-                        <p class="para-style">Ingrese su dirección de correo electronico y recibirá un correo con las intrucciones.</p>
-                        <div class="input">
-                            <span class="fa fa-envelope-o" aria-hidden="true"></span>
-                            <input type="email" placeholder="Correo electronico" name="email" required/>
-                        </div>
-                        <button type="submit" class="btn submit last-btn">Enviar</button><br>
-                        <p>
-                            <strong>¿Tiene inconvenientes?</strong><a href="#"> Contactenos</a>
-                        </p>
-                    </form>
-                </article>
-            </div>
-            <div id="section2" class="section-w3ls">
-                <input type="radio" name="sections" id="option2">
-                <label for="option2" class="icon-left-w3pvt"><span class="fa fa-pencil-square" aria-hidden="true"></span>Registrarse como Proveedor</label>
-                <article>
-                    <form action="#" method="post">
-                        <img src="~/Imagenes/Logo/Logo0.svg" class="rounded mx-auto d-block" alt="logo0" width="25%">
-                        <h3 class="legend">Inscripción de proveedor</h3>
-                        <div class="tab-content " id="pills-registroContent">
-                            <div class="tab-pane fade show active" id="pills-form" role="tabpanel" aria-labelledby="pills-form-tab">
-                                <div class="input">
-                                    <span class="fa fa-envelope-o" aria-hidden="true"></span>
-                                    <input type="email" placeholder="Correo electronico" name="email" required/>
-                                </div>
-                                <div class="input">
-                                    <span class="fa fa-user-o" aria-hidden="true"></span>
-                                    <input type="text" placeholder="Nombre de la Firma contratista o proveedor" name="name" required/>
-                                </div>
-                                <div class="input">
-                                    <span class="fa fa-map-marker" aria-hidden="true"></span>
-                                    <input type="text" placeholder="Dirección del contratista o proveedor" name="name" required/>
-                                </div>
-                                <div class="input">
-                                    <span class="fa fa-phone" aria-hidden="true"></span>
-                                    <input type="tel" placeholder="Télefono" name="name" pattern="[0-9]{7}" required/>
-                                    <span class="fa fa-mobile-phone" aria-hidden="true"></span>
-                                    <input type="tel" placeholder="Celular" name="name" pattern="[0-9]{10}" required/>
-                                </div>
-                                <div class="input">
-                                    <span class="fa fa-user-o" aria-hidden="true"></span>
-                                    <input type="text" placeholder="Nombre del representante legal" name="name" required/>
-                                </div>
-
+<section>
+    <div class="main-bg">
+        <br>
+        <div class="sub-main-w3" style="align-content: center">
+            <!-- vertical tabs -->
+            <div class="vertical-tab">
+                <div id="section1" class="section-w3ls">
+                    <input type="radio" name="sections" id="option1" checked>
+                    <label for="option1" class="icon-left-w3pvt"><span class="far fa-user" aria-hidden="true"></span>Iniciar sesión</label>
+                    <article>
+                        <form asp-controller="Access" asp-action="Login" method="post">
+                            <img src="~/Imagenes/Logo/Logo0.svg" class="rounded mx-auto d-block" alt="logo0" width="25%">
+                            <h3 class="legend">Inicia sesión</h3>
+                            <div class="input">
+                                <span class="far fa-envelope" aria-hidden="true"></span>
+                                <input type="email" placeholder="Correo electronico" name="email" required/>
                             </div>
-                            <div class="tab-pane fade" id="pills-files" role="tabpanel" aria-labelledby="pills-files-tab">
-                                <div class="custom-file">
+                            <div class="input">
+                                <span class="fa fa-key" aria-hidden="true"></span>
+                                <input type="password" placeholder="Contraseña" name="password" required/>
+                            </div>
+
+                            <button type="submit" class="btn submit">Ingresar</button>
+                        </form>
+                    </article>
+                </div>
+                <div id="section3" class="section-w3ls">
+                    <input type="radio" name="sections" id="option3">
+                    <label for="option3" class="icon-left-w3pvt"><span class="fa fa-lock" aria-hidden="true"></span>¿Olvido su contraseña?</label>
+                    <article>
+                        <form asp-controller="Access" asp-action="Recovery" method="post">
+                            <img src="~/Imagenes/Logo/Logo0.svg" class="rounded mx-auto d-block" alt="logo0" width="25%">
+                            <h3 class="legend last">Recuperar contraseña</h3>
+                            <p class="para-style">Ingrese su dirección de correo electronico y recibirá un correo con las intrucciones.</p>
+                            <div class="input">
+                                <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                                <input type="email" placeholder="Correo electronico" name="email" required/>
+                            </div>
+                            <button type="submit" class="btn submit last-btn">Enviar</button><br>
+                            <p>
+                                <strong>¿Tiene inconvenientes?</strong><a href="#"> Contactenos</a>
+                            </p>
+                        </form>
+                    </article>
+                </div>
+                <div id="section2" class="section-w3ls">
+                    <input type="radio" name="sections" id="option2">
+                    <label for="option2" class="icon-left-w3pvt"><span class="fa fa-pencil-square" aria-hidden="true"></span>Registrarse como Proveedor</label>
+                    <article>
+                        <form action="#" method="post">
+                            <img src="~/Imagenes/Logo/Logo0.svg" class="rounded mx-auto d-block" alt="logo0" width="25%">
+                            <h3 class="legend">Inscripción de proveedor</h3>
+                            <!--div class="tab-content " id="pills-registroContent">
+                            <div class="tab-pane fade show active" id="pills-form" role="tabpanel" aria-labelledby="pills-form-tab"-->
+                            <div class="input">
+                                <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                                <input type="email" placeholder="Correo electronico" name="email" required/>
+                            </div>
+                            <div class="input">
+                                <span class="fa fa-user-o" aria-hidden="true"></span>
+                                <input type="text" placeholder="Nombre de la Firma contratista o proveedor" name="name" required/>
+                            </div>
+                            <div class="input">
+                                <span class="fa fa-map-marker" aria-hidden="true"></span>
+                                <input type="text" placeholder="Dirección del contratista o proveedor" name="name" required/>
+                            </div>
+                            <div class="input">
+                                <span class="fa fa-phone" aria-hidden="true"></span>
+                                <input type="tel" placeholder="Télefono" name="name" pattern="[0-9]{7}" required/>
+                                <span class="fa fa-mobile-phone" aria-hidden="true"></span>
+                                <input type="tel" placeholder="Celular" name="name" pattern="[0-9]{10}" required/>
+                            </div>
+                            <div class="input">
+                                <span class="fa fa-user-o" aria-hidden="true"></span>
+                                <input type="text" placeholder="Nombre del representante legal" name="name" required/>
+                            </div>
+
+                            <!--/div>
+                            <div class="tab-pane fade" id="pills-files" role="tabpanel" aria-labelledby="pills-files-tab"-->
+                            <div class="custom-file">
+                                <div class="row">
                                     <p style="text-align: justify">
                                         <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
-                                        Para continuar con el proceso de inscripción debe dar clic en <a href="~/Formulario/FormularioProveedor.pdf" target="_blank">Descargar formulario,</a> diligenciarlo y subirlo nuevamente abajo.</p>
-                                    <input class="form-control form-control-sm" type="file" id="formulariocmc">
-                                    <br>
+                                        Adjunte el suiguiente formulario debidamente diligenciado.</p>
+                                    <div class="input-group mb-3">
+                                        <a class="btn btn-outline-secondary btn-sm" type="button" href="~/Formulario/FormularioProveedor.pdf" target="_blank" id="inputGroupFileAddon03">Formulario</a>
+                                        <input class="form-control form-control-sm" type="file" id="formulariocmc">
+                                    </div>
                                 </div>
-                                <div class="custom-file">
+
+                                <div class="row">
                                     <p style="text-align: justify">
                                         <span class="fa fa-file-archive-o" aria-hidden="true"></span>
-                                        Después de cargar el formulario, debe adjuntar todos los documentos pertinentes en un archivo comprimido y cargar el archivo abajo.</p>
-                                    <input class="form-control form-control-sm" type="file" id="formulariocmc2">
-                                    <br>
-                                </div>
-
-                                <!-- Modal Bancos de datos -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="Check1" required>
-                                        <a href="#" data-toggle="modal" data-target="#modal1"> Consulta a centrales de información y bancos de datos </a>
-                                    </input>
-                                </div>
-
-                                <!-- Modal1 -->
-                                <div class="modal fade" id="modal1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel1">Consulta a centrales de información y bancos de datos</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body" style="text-align: justify">
-                                                <p>
-                                                    Mediante la suscripción del presente formato como proveedor declaro
-                                                    expresamente que autorizo a la Caja de Compensación Familiar de
-                                                    Cundinamarca COMFACUNDI, para que en cualquier momento con fines de control y
-                                                    supervisión consulte la información que sobre nosotros exista en las centrales de riesgo.
-                                                </p><br>
-                                                <p>
-                                                    De igual forma certifico que nuestras actividades son ejercidas de forma lícita y dentro del
-                                                    marco legal. Así mismo que los recursos y bienes asociados no provienen de actividades ilícitas
-                                                    contempladas en el Código Penal Colombiano.
-                                                </p><br>
-                                                <p>
-                                                    Autorizo Expresamente a COMFACUNDI a realizar las consultas pertinentes en la
-                                                    lista Clinton o Listas OFAC (Iffce of Foreign Assets Control) del
-                                                    departamento del tesoro de los Estado Unidos de América y en la lista del Consejo de Seguridad
-                                                    de las Naciones Unidas.
-                                                </p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">He leido y acepto</button>
-                                            </div>
-                                        </div>
+                                        Adjunte los documentos requeridos segun su actividad económica (licencias, certificaciones, etc).</p>
+                                    <div class="input-group mb-3">
+                                        <input class="form-control form-control-sm" type="file" id="formulariocmc2">
                                     </div>
-                                </div>
-                                <!-- Modal tratamiento de datos -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="Check2" required>
-                                        <a href="#" data-toggle="modal" data-target="#modal2">Tratamiento de datos personales</a>
-                                    </input>
                                 </div>
                                 <br>
-                                <!-- Modal2 -->
-                                <div class="modal fade" id="modal2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel2">Tratamiento de datos personales</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body" style="text-align: justify">
-                                                <p>
-                                                    Autorizo expresamente de manera libre, previa,
-                                                    voluntaria y debidamente informada, a la Caja de Compensación Familiar de Cundinamarca
-                                                    COMFACUNDI Nit 860.045.904-7, actualizar, almacenar, usar, circular, suprimir, procesar,
-                                                    compilar, intercambiar, actualizar y disponer de los datos que sean suministrados por mi o
-                                                    por la empresa.
-                                                </p><br>
-                                                <p>
-                                                    Así como para transferir dichos datos de manera total o parcial a sus filiales y
-                                                    aliados estratégicos con fines administrativos, comerciales y de mercadeo, para el envío de información
-                                                    sobre diferentes programas y servicios y en especial para el envío de campañas publicitarias o comerciales,
-                                                    invitaciones a eventos, evaluar la calidad del servicio, realizar estudios o investigaciones de
-                                                    mercado, comercialización de servicios y productos a través de los diferentes canales de información.
-                                                </p><br>
-                                                <p>
-                                                    Los cuales serán sometidos a los fines establecidos anteriormente conforme a Ley 1581 de 2012 y
-                                                    el Decreto 1377 de 2013. Por consiguiente autorizo el envío de comunicaciones usando mis siguientes
-                                                    datos de contacto, entre otros: Número de teléfono móvil, Correo Electrónico, Dirección de correspondencia,
-                                                    Teléfonos fijos, o cualquier otro medio de contacto físico o electrónico que lo permita y que tenga
-                                                    registrado en COMFACUNDI.
-                                                </p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">He leido y acepto</button>
-                                            </div>
+                            </div>
+
+                            <!-- Modal Bancos de datos -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="Check1" required>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal1"> Consulta a centrales de información y bancos de datos </a>
+                                </input>
+                            </div>
+
+                            <!-- Modal1 -->
+                            <div class="modal fade" id="modal1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel1">Consulta a centrales de información y bancos de datos</h5>
+                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" style="text-align: justify">
+                                            <p>
+                                                Mediante la suscripción del presente formato como proveedor declaro
+                                                expresamente que autorizo a la Caja de Compensación Familiar de
+                                                Cundinamarca COMFACUNDI, para que en cualquier momento con fines de control y
+                                                supervisión consulte la información que sobre nosotros exista en las centrales de riesgo.
+                                            </p><br>
+                                            <p>
+                                                De igual forma certifico que nuestras actividades son ejercidas de forma lícita y dentro del
+                                                marco legal. Así mismo que los recursos y bienes asociados no provienen de actividades ilícitas
+                                                contempladas en el Código Penal Colombiano.
+                                            </p><br>
+                                            <p>
+                                                Autorizo Expresamente a COMFACUNDI a realizar las consultas pertinentes en la
+                                                lista Clinton o Listas OFAC (Iffce of Foreign Assets Control) del
+                                                departamento del tesoro de los Estado Unidos de América y en la lista del Consejo de Seguridad
+                                                de las Naciones Unidas.
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">He leido y acepto</button>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-                        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="btn btn-primary" id="pills-form-tab" data-bs-toggle="pill" data-bs-target="#pills-form" type="button" role="tab" aria-controls="pills-form" aria-selected="false">Datos del proveedor</button>
-                            </li>
+                            <!-- Modal tratamiento de datos -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="Check2" required>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal2">Tratamiento de datos personales</a>
+                                </input>
+                            </div>
 
-                            <li class="nav-item" role="presentation">
-                                <button class="btn btn-primary" id="pills-files-tab" data-bs-toggle="pill" data-bs-target="#pills-files" type="button" role="tab" aria-controls="pills-files" aria-selected="true">Formularios</button>
-                            </li>
-                        </ul>
-                        <button type="submit" class="btn submit">Registrarse</button>
-                    </form>
-                </article>
+                            <!-- Modal2 -->
+                            <div class="modal fade" id="modal2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel2">Tratamiento de datos personales</h5>
+                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" style="text-align: justify">
+                                            <p>
+                                                Autorizo expresamente de manera libre, previa,
+                                                voluntaria y debidamente informada, a la Caja de Compensación Familiar de Cundinamarca
+                                                COMFACUNDI Nit 860.045.904-7, actualizar, almacenar, usar, circular, suprimir, procesar,
+                                                compilar, intercambiar, actualizar y disponer de los datos que sean suministrados por mi o
+                                                por la empresa.
+                                            </p><br>
+                                            <p>
+                                                Así como para transferir dichos datos de manera total o parcial a sus filiales y
+                                                aliados estratégicos con fines administrativos, comerciales y de mercadeo, para el envío de información
+                                                sobre diferentes programas y servicios y en especial para el envío de campañas publicitarias o comerciales,
+                                                invitaciones a eventos, evaluar la calidad del servicio, realizar estudios o investigaciones de
+                                                mercado, comercialización de servicios y productos a través de los diferentes canales de información.
+                                            </p><br>
+                                            <p>
+                                                Los cuales serán sometidos a los fines establecidos anteriormente conforme a Ley 1581 de 2012 y
+                                                el Decreto 1377 de 2013. Por consiguiente autorizo el envío de comunicaciones usando mis siguientes
+                                                datos de contacto, entre otros: Número de teléfono móvil, Correo Electrónico, Dirección de correspondencia,
+                                                Teléfonos fijos, o cualquier otro medio de contacto físico o electrónico que lo permita y que tenga
+                                                registrado en COMFACUNDI.
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">He leido y acepto</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn submit">Registrarse</button>
+                            <br></br>
+                        </form>
+                    </article>
+                </div>
             </div>
+            <!-- //vertical tabs -->
         </div>
-        <!-- //vertical tabs -->
     </div>
-</div>
+</section>

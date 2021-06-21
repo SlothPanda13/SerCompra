@@ -33,6 +33,7 @@
 
     <ItemGroup>
       <Folder Include="Models\DataBase" />
+      <Folder Include="wwwroot\css\VuexyTemplate" />
     </ItemGroup>
 
 </Project>

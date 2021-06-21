@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="sercompra@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.21">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.23">
     <root id="1">
       <ServerVersion>8.0.20</ServerVersion>
       <Grants>|root||Julian||ALTER|G
@@ -1591,17 +1591,21 @@ Documentacion_idDocumentacion</RefColNames>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="407" parent="297" name="idUsuario_UNIQUE">
+    <column id="407" parent="297" name="recoveryToken">
+      <Position>5</Position>
+      <DataType>varchar(200)|0s</DataType>
+    </column>
+    <index id="408" parent="297" name="idUsuario_UNIQUE">
       <ColNames>idUsuario</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="408" parent="297" name="PRIMARY">
+    <key id="409" parent="297" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idUsuario</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="409" parent="297" name="idUsuario_UNIQUE">
+    <key id="410" parent="297" name="idUsuario_UNIQUE">
       <ColNames>idUsuario</ColNames>
       <UnderlyingIndexName>idUsuario_UNIQUE</UnderlyingIndexName>
     </key>

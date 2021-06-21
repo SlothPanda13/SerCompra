@@ -26,9 +26,10 @@ namespace SerCompra
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSession();
-            services.AddControllersWithViews().AddRazorRuntimeCompilation(); ;
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddDbContext<sercompraContext>(options =>
-             options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+
           
         }
 

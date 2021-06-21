@@ -207,7 +207,7 @@ body {
 }
 
 .main-bg {
-    background: url(../Imagenes/b4.jpg) no-repeat center;
+    background: url(../Imagenes/b4.jpg) ;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

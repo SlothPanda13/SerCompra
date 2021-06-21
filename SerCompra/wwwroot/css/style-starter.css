@@ -4152,10 +4152,10 @@ fieldset:disabled a.btn {
 .btn-secondary {
   color: #fff;
   background-color: #ec0086;
-  border-color: #ec0086; }
+  border-color: #F77F0C; }
   .btn-secondary:hover {
     color: #fff;
-    background-color: #ec0086;
+    background-color: #F5432B;
     border-color: #ec0086; }
   .btn-secondary:focus, .btn-secondary.focus {
     color: #fff;
@@ -10560,11 +10560,13 @@ h6.sub-title {
   margin-bottom: 14px;
   color: var(--white-color); }
 
-.w3l-main-slider .banner-info-bg h5 {
+.w3l-main-slider .banner-info-bg h5{
   font-size: 60px;
   line-height: 68px;
   font-weight: 600;
   color: var(--white-color); }
+.w3l-main-slider .banner-info-bg h3{
+color: var(--white-color);}
 
 .w3l-main-slider .banner-info-bg p {
   font-size: 18px;
@@ -11499,17 +11501,17 @@ button.owl-next {
   -o-transition: 0.3s ease; }
 
 .w3l-services2 .features-with-17-right-tp_sur:hover div.features-with-17-left2 h6 a {
-  color: var(--title-color); }
+  color: #F5432B; }
 
 .w3l-services2 .features-with-17-right-tp_sur:hover div.features-with-17-left2 p {
-  color: var(--text-color); }
+  color: #000B4B; }
 
 .w3l-services2 .features-with-17-right-tp_sur:hover div.features-with-17-left1 span {
-  color: var(--opposite-color); }
+  color: #F5432B; }
 
 .w3l-services2 .features-with-17-left1 span {
   font-size: 32px;
-  color: var(--opposite-color); }
+  color: #fff; }
 
 .w3l-services2 .features-with-17-left2 h6 a {
   color: #fff;
