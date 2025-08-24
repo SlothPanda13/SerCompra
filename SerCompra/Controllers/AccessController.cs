@@ -1,39 +1,34 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
-using SerCompra.Models.DataBase;
-using SerCompra.Models;
-using Microsoft.AspNetCore.Http;
+using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.Cmp;
-
-
-
+using SerCompra.Models.DataBase;
 
 namespace SerCompra.Controllers
 {
     public class AccessController : Controller
     {
-    string urlDomain = "http://localhost:5001/";
+        string urlDomain = "http://localhost:5001/";
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         [AllowAnonymous]
         public IActionResult Login(string email, string password)
         {
             try
             {
-                using (var db = new sercompraContext())
+                using (var db = new SercompraContext())
                 {
                     /*var usr = from d in db.Usuarios
                         where d.Email == email && d.Contraseña == password
@@ -43,15 +38,17 @@ namespace SerCompra.Controllers
                         select d.Rol;
                     if (rl.Count() > 0)
                     {
-                    //Session["User"] = rl.First();
+                        //Session["User"] = rl.First();
                         if (rl.Contains("Administrador"))
                         {
                             return RedirectToAction("index", "Home");
                         }
+
                         if (rl.Contains("Funcionario"))
                         {
                             return RedirectToAction("index", "Home");
                         }
+
                         if (rl.Contains("Proveedor"))
                         {
                             return RedirectToAction("index", "Home");
@@ -68,10 +65,11 @@ namespace SerCompra.Controllers
             {
                 return Content("Ocurrió un error " + e.Message);
             }
+
             //return View("Login");
             return RedirectToAction("Index", "Home");
-
         }
+
         [HttpPost]
         [AllowAnonymous]
         public IActionResult Recovery(string email)
@@ -79,9 +77,9 @@ namespace SerCompra.Controllers
             try
             {
                 string token = GetSha256(Guid.NewGuid().ToString());
-                using (var db = new sercompraContext())
+                using (var db = new SercompraContext())
                 {
-                    var oUser = db.Usuarios.Where (d=> d.Email == email).FirstOrDefault();
+                    var oUser = db.Usuarios.Where(d => d.Email == email).FirstOrDefault();
                     if (oUser != null)
                     {
                         oUser.RecoveryToken = token;
@@ -89,9 +87,10 @@ namespace SerCompra.Controllers
                         db.SaveChanges();
 
                         //enviar mail
-                        SendEmail(oUser.Email,token);
+                        SendEmail(oUser.Email, token);
                     }
-                    else {
+                    else
+                    {
                         ViewBag.Error = "El usuario no existe";
                         return View("Login");
                     }
@@ -101,35 +100,43 @@ namespace SerCompra.Controllers
             {
                 return Content("Ocurrió un error " + e.Message);
             }
+
             //return View("Login");
             return RedirectToAction("Privacy", "Home");
         }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPass()
         {
             return View();
         }
+
         #region HELPERS
+
         private string GetSha256(string str)
         {
-            SHA256 sha256 = SHA256Managed.Create();
-            ASCIIEncoding encoding = new ASCIIEncoding();
-            byte[] stream = null;
-            StringBuilder sb = new StringBuilder();
-            stream = sha256.ComputeHash(encoding.GetBytes(str));
-            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
-            return sb.ToString();
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] stream = sha256.ComputeHash(Encoding.ASCII.GetBytes(str));
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in stream)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+
+                return sb.ToString();
+            }
         }
 
-        private void SendEmail(string EmailDestino,string token)
+        private void SendEmail(string EmailDestino, string token)
         {
             string EmailOrigen = "SercompraSupport@gmail.com";
             string Contraseña = "Support12345sercompra";
-            string url = urlDomain+"/Access/Recovery/?token="+token;
+            string url = urlDomain + "/Access/Recovery/?token=" + token;
             MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperación de contraseña",
-                "<p>Hemos recibido una solicitud para recuperar su contraseña, haga click en el siguiente enlace para recuperarla</p><br>"+
-                     "<a href='"+url+"'>Click para recuperar</a>");
+                "<p>Hemos recibido una solicitud para recuperar su contraseña, haga click en el siguiente enlace para recuperarla</p><br>" +
+                "<a href='" + url + "'>Click para recuperar</a>");
 
             oMailMessage.IsBodyHtml = true;
 
@@ -137,7 +144,7 @@ namespace SerCompra.Controllers
             oSmtpClient.EnableSsl = true;
             oSmtpClient.UseDefaultCredentials = false;
             oSmtpClient.Port = 587;
-            oSmtpClient.Credentials = new System.Net.NetworkCredential(EmailOrigen, Contraseña);
+            oSmtpClient.Credentials = new NetworkCredential(EmailOrigen, Contraseña);
 
             oSmtpClient.Send(oMailMessage);
 

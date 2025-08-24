@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,17 +15,17 @@ namespace SerCompra
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSession();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddDbContext<sercompraContext>(options =>
-                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
-          
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<SercompraContext>(options =>
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
