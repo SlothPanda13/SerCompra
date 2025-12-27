@@ -1,0 +1,24 @@
+# .NET Core
+bin/
+obj/
+/packages/
+/_ReSharper.Caches/
+.vs/
+.idea/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Configuration / Secrets
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+*.env
+
+# Rider / JetBrains
+riderModule.iml
+.idea/
+*.suo

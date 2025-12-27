@@ -57,7 +57,9 @@
                                 <h4 class="card-title mb-1">Recuperar contraseña 🔒</h4>
                                 <p class="card-text mb-2">Su nueva contraseña debe ser diferente a la usada anteriormente</p>
 
-                                <form class="auth-reset-password-form mt-2" asp-controller="Access" asp-action="" method="post">
+                                <form class="auth-reset-password-form mt-2" asp-controller="Access"
+                                      asp-action="ResetPass" method="post">
+                                    <input type="hidden" name="token" value="@Context.Request.Query["token"]"/>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-between">
                                             <label for="reset-password-new">Contraseña nueva</label>

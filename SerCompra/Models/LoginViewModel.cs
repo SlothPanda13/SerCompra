@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SerCompra.Models
 {
@@ -12,11 +8,11 @@ namespace SerCompra.Models
         [StringLength(45, ErrorMessage = "Logitud máxima 45")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Error Correo")]
         [EmailAddress(ErrorMessage = "Correo electrónico incorrecto")]
-        public string Email { get; set; }
+        public required string Email { get; set; }
 
         [Required(ErrorMessage = "Contraseña requerida")]
         [StringLength(45, ErrorMessage = "Logitud máxima 45")]
         [DataType(DataType.Password, ErrorMessage = "Error contraseña")]
-        public string Contraseña { get; set; }
+        public required string Contraseña { get; set; }
     }
 }

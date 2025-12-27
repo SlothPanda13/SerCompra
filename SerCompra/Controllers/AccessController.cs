@@ -1,108 +1,113 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Security.Cryptography;
-using System.Text;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SerCompra.Models.DataBase;
+using SerCompra.Services;
 
 namespace SerCompra.Controllers
 {
     public class AccessController : Controller
     {
+        private readonly IAuthService _authService;
+        private readonly IEmailService _emailService;
         string urlDomain = "http://localhost:5001/";
+
+        public AccessController(IAuthService authService, IEmailService emailService)
+        {
+            _authService = authService;
+            _emailService = emailService;
+        }
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login(string email, string password)
+        public async Task<IActionResult> Login(string email, string password)
         {
             try
             {
-                using (var db = new SercompraContext())
+                var user = await _authService.ValidateUserAsync(email, password);
+
+                if (user != null)
                 {
-                    /*var usr = from d in db.Usuarios
-                        where d.Email == email && d.Contraseña == password
-                        select d;*/
-                    var rl = from d in db.Usuarios
-                        where (d.Email == email && d.Contraseña == password)
-                        select d.Rol;
-                    if (rl.Count() > 0)
+                    var claims = new List<Claim>
                     {
-                        //Session["User"] = rl.First();
-                        if (rl.Contains("Administrador"))
-                        {
-                            return RedirectToAction("index", "Home");
-                        }
+                        new Claim(ClaimTypes.Name, user.Email),
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.Role, user.Rol)
+                    };
 
-                        if (rl.Contains("Funcionario"))
-                        {
-                            return RedirectToAction("index", "Home");
-                        }
-
-                        if (rl.Contains("Proveedor"))
-                        {
-                            return RedirectToAction("index", "Home");
-                        }
-                    }
-                    else
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var authProperties = new AuthenticationProperties
                     {
-                        ViewBag.Error = "Usuario o contraseña incorrectos";
-                        return View();
-                    }
+                        IsPersistent = true
+                    };
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.Error = "Usuario o contraseña incorrectos";
+                    return View();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return Content("Ocurrió un error " + e.Message);
+                ViewBag.Error = "Ocurrió un error inesperado. Por favor intente nuevamente.";
+                return View();
             }
+        }
 
-            //return View("Login");
-            return RedirectToAction("Index", "Home");
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Access");
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Recovery(string email)
+        public async Task<IActionResult> Recovery(string email)
         {
             try
             {
-                string token = GetSha256(Guid.NewGuid().ToString());
-                using (var db = new SercompraContext())
+                var user = await _authService.GetUserByEmailAsync(email);
+                if (user != null)
                 {
-                    var oUser = db.Usuarios.Where(d => d.Email == email).FirstOrDefault();
-                    if (oUser != null)
-                    {
-                        oUser.RecoveryToken = token;
-                        db.Entry(oUser).State = EntityState.Modified;
-                        db.SaveChanges();
+                    string token = await _authService.GenerateRecoveryTokenAsync(user);
+                    string url = $"{urlDomain}/Access/Recovery/?token={token}";
+                    string body =
+                        "<p>Hemos recibido una solicitud para recuperar su contraseña, haga click en el siguiente enlace para recuperarla</p><br>" +
+                        $"<a href='{url}'>Click para recuperar</a>";
 
-                        //enviar mail
-                        SendEmail(oUser.Email, token);
-                    }
-                    else
-                    {
-                        ViewBag.Error = "El usuario no existe";
-                        return View("Login");
-                    }
+                    await _emailService.SendEmailAsync(user.Email, "Recuperación de contraseña", body);
+
+                    return RedirectToAction("Privacy", "Home"); // Should be a "Check your email" page
+                }
+                else
+                {
+                    ViewBag.Error = "El usuario no existe";
+                    return View("Login");
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return Content("Ocurrió un error " + e.Message);
+                ViewBag.Error = "Ocurrió un error al procesar su solicitud.";
+                return View("Login");
             }
-
-            //return View("Login");
-            return RedirectToAction("Privacy", "Home");
         }
 
         [HttpGet]
@@ -112,45 +117,39 @@ namespace SerCompra.Controllers
             return View();
         }
 
-        #region HELPERS
-
-        private string GetSha256(string str)
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPass(string token,
+            [FromForm(Name = "reset-password-new")] string newPassword,
+            [FromForm(Name = "reset-password-confirm")] string confirmPassword)
         {
-            using (SHA256 sha256 = SHA256.Create())
+            try
             {
-                byte[] stream = sha256.ComputeHash(Encoding.ASCII.GetBytes(str));
-                StringBuilder sb = new StringBuilder();
-                foreach (byte b in stream)
+                if (newPassword != confirmPassword)
                 {
-                    sb.Append(b.ToString("x2"));
+                    ViewBag.Error = "Las contraseñas no coinciden.";
+                    return View();
                 }
 
-                return sb.ToString();
+                var user = await _authService.GetUserByRecoveryTokenAsync(token);
+                if (user != null)
+                {
+                    await _authService.ResetPasswordAsync(user, newPassword);
+
+                    ViewBag.Message = "Contraseña restablecida exitosamente.";
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ViewBag.Error = "Token inválido o expirado.";
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Ocurrió un error al restablecer la contraseña.";
+                return View();
             }
         }
-
-        private void SendEmail(string EmailDestino, string token)
-        {
-            string EmailOrigen = "SercompraSupport@gmail.com";
-            string Contraseña = "Support12345sercompra";
-            string url = urlDomain + "/Access/Recovery/?token=" + token;
-            MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperación de contraseña",
-                "<p>Hemos recibido una solicitud para recuperar su contraseña, haga click en el siguiente enlace para recuperarla</p><br>" +
-                "<a href='" + url + "'>Click para recuperar</a>");
-
-            oMailMessage.IsBodyHtml = true;
-
-            SmtpClient oSmtpClient = new SmtpClient("smtp.gmail.com");
-            oSmtpClient.EnableSsl = true;
-            oSmtpClient.UseDefaultCredentials = false;
-            oSmtpClient.Port = 587;
-            oSmtpClient.Credentials = new NetworkCredential(EmailOrigen, Contraseña);
-
-            oSmtpClient.Send(oMailMessage);
-
-            oSmtpClient.Dispose();
-        }
-
-        #endregion
     }
 }

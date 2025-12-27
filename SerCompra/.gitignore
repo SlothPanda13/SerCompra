@@ -1,0 +1,66 @@
+﻿# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/packages
+/node_modules
+/lib
+
+# project files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
+# Rider
+.idea/
+
+# Mac
+.DS_Store
+
+# build results
+[Bb]in/
+[Oo]bj/
+[Rr]elease/
+[Dd]ebug/
+[Ll]ogs/
+
+# secrets
+appsettings.Development.json
+appsettings.json
+secrets.json
+*.env
+
+# Other
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vsix
+*.suo
+*.opensdf
+*.sdf
+*.cache
+*.exe
+*.dll
+*.msi
+*.zip
+*.nupkg
